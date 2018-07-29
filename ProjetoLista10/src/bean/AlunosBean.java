@@ -12,7 +12,7 @@ package bean;
 public class AlunosBean {
     private String nome,codigoDeMatricula;
     private int id;
-    private float nota1,nota2,nota3,nota4;
+    private float nota1,nota2,nota3;
     private byte frequencia;
 
     public String getNome() {
@@ -62,15 +62,6 @@ public class AlunosBean {
     public void setNota3(float nota3) {
         this.nota3 = nota3;
     }
-
-    public float getNota4() {
-        return nota4;
-    }
-
-    public void setNota4(float nota4) {
-        this.nota4 = nota4;
-    }
-
     public byte getFrequencia() {
         return frequencia;
     }

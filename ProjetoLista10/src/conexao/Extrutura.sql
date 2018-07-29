@@ -10,5 +10,4 @@ CREATE TABLE alunos(
         nota_1          FLOAT,
         nota_2          FLOAT,
         nota_3          FLOAT,
-        nota_4          FLOAT,
         frequencia      TINYINT);

@@ -26,8 +26,8 @@ public class AlunoDao {
         Connection conexao = ConexaoFactory.obterConexao();
         if (conexao != null) {
             String sql = "INSERT INTO alunos"
-                    + "\n(id, nome, nota1, nota2, nota3, nota4,codigo_de_matricula ,frequencia )"
-                    + "\nVALUES(?,?,?,?,?,?,?,?)";
+                    + "\n(id, nome, nota1, nota2, nota3,codigo_de_matricula ,frequencia )"
+                    + "\nVALUES(?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = conexao
                         .prepareStatement(sql,
@@ -37,7 +37,6 @@ public class AlunoDao {
                 preparedStatement.setDouble(3, aluno.getNota1());
                 preparedStatement.setDouble(4, aluno.getNota2());
                 preparedStatement.setDouble(5, aluno.getNota3());
-                preparedStatement.setDouble(6, aluno.getNota4());
                 preparedStatement.setString(7, aluno.getCodigoDeMatricula());
                 preparedStatement.setByte(8, aluno.getFrequencia());
                 preparedStatement.execute();
@@ -56,6 +55,28 @@ public class AlunoDao {
     }
 
     public boolean alterar(AlunosBean aluno) {
+        Connection conexao = ConexaoFactory.obterConexao();
+        String sql = "UPDATE alunos"
+                + "\nSET nome = ?,codigo_matricula = ?,nota_1 = ?,nota_2 = ?,nota_3 = ?,frequencia = ?"
+                + "WHERE id = ?";
+        if(conexao != null){
+            try {
+                PreparedStatement ps = conexao.prepareStatement(sql);
+                ps.setString(1,aluno.getNome());
+                ps.setString(2,aluno.getCodigoDeMatricula());
+                ps.setFloat(3,aluno.getNota1());
+                ps.setFloat(4,aluno.getNota2());
+                ps.setFloat(5,aluno.getNota3());
+                ps.setByte(7,aluno.getFrequencia());
+                ps.setInt(9, aluno.getId());
+                return ps.executeUpdate() == 1;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally{
+                ConexaoFactory.fecharConexao();
+            }
+        }
         return false;
     }
 
@@ -77,7 +98,7 @@ public class AlunoDao {
     }
 
     public AlunosBean obterAlunoPeloId(int id) {
-        String sql = "SELECT id, nome, Nota1, Nota2, Nota3, Nota4, nota4,codigo_de_matricula ,frequencia "
+        String sql = "SELECT id, nome, Nota1, Nota2, Nota3, codigo_de_matricula ,frequencia "
                 + "FROM alunos WHERE id = ?;";
         Connection conexao = ConexaoFactory.obterConexao();
         if (conexao != null) {
@@ -93,7 +114,6 @@ public class AlunoDao {
                     aluno.setNota1(resultSet.getFloat("nota1"));
                     aluno.setNota2(resultSet.getFloat("nota2"));
                     aluno.setNota3(resultSet.getFloat("nota3"));
-                    aluno.setNota4(resultSet.getFloat("nota4"));
                     aluno.setCodigoDeMatricula(resultSet.getString("codigo_de_matricula"));
                     aluno.setFrequencia(resultSet.getByte("frequencia"));
                     return aluno;
@@ -111,7 +131,7 @@ public class AlunoDao {
         List<AlunosBean> alunos = new ArrayList<>();
         Connection conexao = ConexaoFactory.obterConexao();
         if (conexao != null) {
-            String sql = "SELECT id, nome, nota1, nota2, nota3, nota4,"
+            String sql = "SELECT id, nome, nota1, nota2, nota3"
                     + "codigo_de_matricula ,frequencia FROM alunos";
             try {
                 Statement statement = conexao.createStatement();
@@ -124,7 +144,6 @@ public class AlunoDao {
                     aluno.setNota1(resultSet.getFloat("nota1"));
                     aluno.setNota2(resultSet.getFloat("nota2"));
                     aluno.setNota3(resultSet.getFloat("nota3"));
-                    aluno.setNota4(resultSet.getFloat("nota4"));
                     aluno.setCodigoDeMatricula(resultSet.getString("codigo_de_matricula"));
                     aluno.setFrequencia(resultSet.getByte("frequencia"));
                     alunos.add(aluno);
