@@ -33,7 +33,9 @@ private JLabel jLabelNome, jLabelId;
         jFrameSystem.setSize(460,360);
         jFrameSystem.setLocationRelativeTo(null);
         jFrameSystem.setLayout(null);
+        jFrameSystem.setResizable(false);
         jFrameSystem.setDefaultCloseOperation(jFrameSystem.DISPOSE_ON_CLOSE);
+
         
     }
 
@@ -42,10 +44,10 @@ private JLabel jLabelNome, jLabelId;
         jTextFieldFrequencia = new JTextField();
         jTextFieldNome = new JTextField();
         jTextFieldCodigoMatricula = new JTextField();
-        jTextFieldNota1= new JTextField();
-        jTextFieldNota2= new JTextField();
-        jTextFieldNota3= new JTextField();
-        jTextFieldNota4= new JTextField();
+        jTextFieldNota1= new JTextField("1°");
+        jTextFieldNota2= new JTextField("2°");
+        jTextFieldNota3= new JTextField("3°");
+        jTextFieldNota4= new JTextField("4°");
         jLabelId = new JLabel("Id:");
         jLabelNome = new JLabel("Nome");
     }
@@ -54,21 +56,26 @@ private JLabel jLabelNome, jLabelId;
         jFrameSystem.add(jLabelId);
         jFrameSystem.add(jLabelNome);
         jFrameSystem.add(jTextFieldId);
-      //  jFrameSystem.add(jTextFieldFrequencia);
+       jFrameSystem.add(jTextFieldFrequencia);
         jFrameSystem.add(jTextFieldNome);
-      /*  jFrameSystem.add(jTextFieldCodigoMatricula);
-       /* jFrameSystem.add(jTextFieldNota1);
-      /*  jFrameSystem.add(jTextFieldNota2);
-      /*  jFrameSystem.add(jTextFieldNota3);
-      /*  jFrameSystem.add(jTextFieldNota4);*/
+       jFrameSystem.add(jTextFieldCodigoMatricula);
+      jFrameSystem.add(jTextFieldNota1);
+        jFrameSystem.add(jTextFieldNota2);
+        jFrameSystem.add(jTextFieldNota3);
+        jFrameSystem.add(jTextFieldNota4);
         
     }
 
     private void gerarLocalizacoes() {
-      jLabelId.setLocation(200,3);
-      jLabelNome.setLocation(10,3);
-      jTextFieldId.setLocation(200,25);
-      jTextFieldNome.setLocation(10,25);
+      int margem =20, entreLinha = 20;
+      jLabelId.setLocation(200+margem,3+entreLinha);
+      jLabelNome.setLocation(10+margem,3+entreLinha);
+      jTextFieldId.setLocation(200+margem,25+entreLinha);
+      jTextFieldNome.setLocation(10+margem,25+entreLinha);
+      jTextFieldNota1.setLocation(10+margem, 60+entreLinha);
+      jTextFieldNota2.setLocation(90+margem,60+entreLinha);
+      jTextFieldNota3.setLocation(170+margem,60+entreLinha);
+      jTextFieldNota4.setLocation(250+margem,60+entreLinha);
     }
 
     private void gerarDimensoes() {
@@ -76,5 +83,9 @@ private JLabel jLabelNome, jLabelId;
          jLabelNome.setSize(60,20);
          jTextFieldId.setSize(70,20);
          jTextFieldNome.setSize(180,20);
+         jTextFieldNota1.setSize(jTextFieldId.getSize());
+         jTextFieldNota2.setSize(jTextFieldId.getSize());
+         jTextFieldNota3.setSize(jTextFieldId.getSize());
+         jTextFieldNota4.setSize(jTextFieldId.getSize());
     }
 }
