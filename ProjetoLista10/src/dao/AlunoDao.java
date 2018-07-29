@@ -76,7 +76,7 @@ public class AlunoDao {
         return false;
     }
 
-    public AlunosBean obterClientePeloId(int id) {
+    public AlunosBean obterAlunoPeloId(int id) {
         String sql = "SELECT id, nome, Nota1, Nota2, Nota3, Nota4, nota4,codigo_de_matricula ,frequencia "
                 + "FROM alunos WHERE id = ?;";
         Connection conexao = ConexaoFactory.obterConexao();
@@ -107,7 +107,7 @@ public class AlunoDao {
         return null;
     }
 
-    public List<AlunosBean> obterClientes() {
+    public List<AlunosBean> obterAlunos() {
         List<AlunosBean> alunos = new ArrayList<>();
         Connection conexao = ConexaoFactory.obterConexao();
         if (conexao != null) {

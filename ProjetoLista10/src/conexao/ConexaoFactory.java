@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class ConexaoFactory {
     private static String CLASS_NAME = "com.mysql.jbc.Driver";
-    private static String HOST ="jdbc:mysql://localhost/lista10";
+    private static String HOST ="jdbc:mysql:/localhost/lista10";
     private static String LOGIN = "root";
     private static String SENHA = "";
     private static Connection conexao;

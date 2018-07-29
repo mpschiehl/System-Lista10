@@ -5,6 +5,11 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import bean.AlunosBean;
+import dao.AlunoDao;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -20,6 +25,7 @@ public class SystemAluno {
         adicionarComponentes();
         gerarLocalizacoes();
         gerarDimensoes();
+        acaoBotaoSalvar();
         jFrameSystem.setVisible(true);
 
     }
@@ -28,6 +34,7 @@ private JTextField jTextFieldNome,jTextFieldId,jTextFieldCodigoMatricula,
         jTextFieldFrequencia,jTextFieldNota1,jTextFieldNota2,jTextFieldNota3,
         jTextFieldNota4;
 private JLabel jLabelNome, jLabelId,jLabelNota1,jLabelNota2,jLabelNota3,jLabelNota4;
+private JButton jButtonSalvar,jButtonCancelar,jButtonEdital;
     private void gerarTela() {
         jFrameSystem = new JFrame();
         jFrameSystem.setSize(390,240);
@@ -54,6 +61,8 @@ private JLabel jLabelNome, jLabelId,jLabelNota1,jLabelNota2,jLabelNota3,jLabelNo
         jLabelNota2 = new JLabel("2° nota");
         jLabelNota3 = new JLabel("3° nota");
         jLabelNota4 = new JLabel("4° nota");
+        jButtonSalvar = new JButton("Salvar");
+        jButtonEdital = new JButton("Editar");
     }
 
     private void adicionarComponentes() {
@@ -71,6 +80,8 @@ private JLabel jLabelNome, jLabelId,jLabelNota1,jLabelNota2,jLabelNota3,jLabelNo
         jFrameSystem.add(jTextFieldNota2);
         jFrameSystem.add(jTextFieldNota3);
         jFrameSystem.add(jTextFieldNota4);
+        jFrameSystem.add(jButtonSalvar);
+        jFrameSystem.add(jButtonEdital);
         
     }
 
@@ -90,6 +101,8 @@ private JLabel jLabelNome, jLabelId,jLabelNota1,jLabelNota2,jLabelNota3,jLabelNo
       jLabelNota4.setLocation(jTextFieldNota4.getX(),62);
       jTextFieldCodigoMatricula.setLocation(jLabelNota1.getX(),100+entreLinha);
       jTextFieldFrequencia.setLocation(jLabelNota2.getX(),100+entreLinha);
+      jButtonSalvar.setLocation(jLabelNota1.getX(), jTextFieldCodigoMatricula.getY()+ entreLinha);
+      jButtonEdital.setLocation(101,jTextFieldFrequencia.getY()+entreLinha);
     }
 
     private void gerarDimensoes() {
@@ -107,5 +120,30 @@ private JLabel jLabelNome, jLabelId,jLabelNota1,jLabelNota2,jLabelNota3,jLabelNo
          jLabelNota4.setSize(jLabelNome.getSize());
          jTextFieldCodigoMatricula.setSize(jTextFieldId.getSize());
          jTextFieldFrequencia.setSize(jTextFieldId.getSize());
+         jButtonSalvar.setSize(jTextFieldCodigoMatricula.getSize());
+         jButtonEdital.setSize(85,20);
+    }
+
+    private void acaoBotaoSalvar() {
+         jButtonSalvar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                
+                AlunosBean aluno = new AlunosBean();
+                aluno.setNome(jTextFieldNome.getText().trim());
+                aluno.setCodigoDeMatricula(jTextFieldCodigoMatricula.getText().trim());
+                aluno.setNota1(Float.parseFloat(jTextFieldNota1.getText()));
+                aluno.setNota2(Float.parseFloat(jTextFieldNota2.getText()));
+                aluno.setNota3(Float.parseFloat(jTextFieldNota3.getText()));
+                aluno.setNota4(Float.parseFloat(jTextFieldNota4.getText()));
+                aluno.setFrequencia(Byte.parseByte(jTextFieldFrequencia.getText()));
+                
+                if(jTextFieldId.getText().isEmpty()){
+                    int id = new AlunoDao().inserir(aluno);
+                    aluno.setId(id);
+                }
+            }    
+         }
     }
 }
