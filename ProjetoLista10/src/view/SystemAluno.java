@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Marcio
+ * @author Marcio Pedro Schiehl
  */
 public class SystemAluno {
     public SystemAluno(){
@@ -27,10 +27,10 @@ private JFrame  jFrameSystem;
 private JTextField jTextFieldNome,jTextFieldId,jTextFieldCodigoMatricula,
         jTextFieldFrequencia,jTextFieldNota1,jTextFieldNota2,jTextFieldNota3,
         jTextFieldNota4;
-private JLabel jLabelNome, jLabelId;
+private JLabel jLabelNome, jLabelId,jLabelNota1,jLabelNota2,jLabelNota3,jLabelNota4;
     private void gerarTela() {
         jFrameSystem = new JFrame();
-        jFrameSystem.setSize(460,360);
+        jFrameSystem.setSize(390,240);
         jFrameSystem.setLocationRelativeTo(null);
         jFrameSystem.setLayout(null);
         jFrameSystem.setResizable(false);
@@ -41,25 +41,33 @@ private JLabel jLabelNome, jLabelId;
 
     private void instanciarComponentes() {
         jTextFieldId = new JTextField();
-        jTextFieldFrequencia = new JTextField();
+        jTextFieldFrequencia = new JTextField("jTextFieldFrequencia");
         jTextFieldNome = new JTextField();
-        jTextFieldCodigoMatricula = new JTextField();
-        jTextFieldNota1= new JTextField("1°");
-        jTextFieldNota2= new JTextField("2°");
-        jTextFieldNota3= new JTextField("3°");
-        jTextFieldNota4= new JTextField("4°");
+        jTextFieldCodigoMatricula = new JTextField("jTextFieldCodigoMatricula");
+        jTextFieldNota1= new JTextField();
+        jTextFieldNota2= new JTextField();
+        jTextFieldNota3= new JTextField();
+        jTextFieldNota4= new JTextField();
         jLabelId = new JLabel("Id:");
         jLabelNome = new JLabel("Nome");
+        jLabelNota1 = new JLabel("1° nota");
+        jLabelNota2 = new JLabel("2° nota");
+        jLabelNota3 = new JLabel("3° nota");
+        jLabelNota4 = new JLabel("4° nota");
     }
 
     private void adicionarComponentes() {
         jFrameSystem.add(jLabelId);
         jFrameSystem.add(jLabelNome);
+        jFrameSystem.add(jLabelNota1);
+        jFrameSystem.add(jLabelNota2);
+        jFrameSystem.add(jLabelNota3);
+        jFrameSystem.add(jLabelNota4);
         jFrameSystem.add(jTextFieldId);
-       jFrameSystem.add(jTextFieldFrequencia);
+        jFrameSystem.add(jTextFieldFrequencia);
         jFrameSystem.add(jTextFieldNome);
-       jFrameSystem.add(jTextFieldCodigoMatricula);
-      jFrameSystem.add(jTextFieldNota1);
+        jFrameSystem.add(jTextFieldCodigoMatricula);
+        jFrameSystem.add(jTextFieldNota1);
         jFrameSystem.add(jTextFieldNota2);
         jFrameSystem.add(jTextFieldNota3);
         jFrameSystem.add(jTextFieldNota4);
@@ -76,6 +84,12 @@ private JLabel jLabelNome, jLabelId;
       jTextFieldNota2.setLocation(90+margem,60+entreLinha);
       jTextFieldNota3.setLocation(170+margem,60+entreLinha);
       jTextFieldNota4.setLocation(250+margem,60+entreLinha);
+      jLabelNota1.setLocation(jTextFieldNota1.getX(),62);
+      jLabelNota2.setLocation(jTextFieldNota2.getX(),62);
+      jLabelNota3.setLocation(jTextFieldNota3.getX(),62);
+      jLabelNota4.setLocation(jTextFieldNota4.getX(),62);
+      jTextFieldCodigoMatricula.setLocation(jLabelNota1.getX(),100+entreLinha);
+      jTextFieldFrequencia.setLocation(jLabelNota2.getX(),100+entreLinha);
     }
 
     private void gerarDimensoes() {
@@ -87,5 +101,11 @@ private JLabel jLabelNome, jLabelId;
          jTextFieldNota2.setSize(jTextFieldId.getSize());
          jTextFieldNota3.setSize(jTextFieldId.getSize());
          jTextFieldNota4.setSize(jTextFieldId.getSize());
+         jLabelNota1.setSize(jLabelNome.getSize());
+         jLabelNota2.setSize(jLabelNome.getSize());
+         jLabelNota3.setSize(jLabelNome.getSize());
+         jLabelNota4.setSize(jLabelNome.getSize());
+         jTextFieldCodigoMatricula.setSize(jTextFieldId.getSize());
+         jTextFieldFrequencia.setSize(jTextFieldId.getSize());
     }
 }
