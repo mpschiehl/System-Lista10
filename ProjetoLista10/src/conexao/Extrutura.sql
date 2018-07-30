@@ -7,7 +7,7 @@ CREATE TABLE alunos(
         id              INT AUTO_INCREMENT PRIMARY KEY,
         nome            VARCHAR(100),
         codigo_de_matricula VARCHAR(100),
-        nota_1          FLOAT,
-        nota_2          FLOAT,
-        nota_3          FLOAT,
-        frequencia      TINYINT);
+        nota_1          FLOAT UNSIGNED,
+        nota_2          FLOAT UNSIGNED,
+        nota_3          FLOAT UNSIGNED,
+        frequencia      TINYINT UNSIGNED);

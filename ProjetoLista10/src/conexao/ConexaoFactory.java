@@ -19,7 +19,10 @@ public class ConexaoFactory {
     private static String LOGIN = "root";
     private static String SENHA = "";
     private static Connection conexao;
-    
+     
+    public static void main(String[] args) {
+        ConexaoFactory.obterConexao();
+    }
     public static Connection obterConexao(){
         try {
             conexao = DriverManager.getConnection(HOST,LOGIN,SENHA);
@@ -28,9 +31,7 @@ public class ConexaoFactory {
           }
         return conexao;
     }
-    public static void main(String[] args) {
-        ConexaoFactory.obterConexao();
-    }
+   
     public static void fecharConexao(){
         try{
             if(conexao!=null){

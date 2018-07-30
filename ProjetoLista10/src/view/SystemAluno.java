@@ -8,6 +8,7 @@ package view;
 import java.awt.event.ActionEvent;
 import bean.AlunosBean;
 import dao.AlunoDao;
+import interfaces.BaseInterfaceLista10;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author Marcio Pedro Schiehl
  */
-public class SystemAluno {
+public class SystemAluno  implements BaseInterfaceLista10{
     public SystemAluno(){
         gerarTela();
         instanciarComponentes();
@@ -34,16 +35,10 @@ private JTextField jTextFieldNome,jTextFieldId,jTextFieldCodigoMatricula,
         jTextFieldFrequencia,jTextFieldNota1,jTextFieldNota2,jTextFieldNota3;
 private JLabel jLabelNome, jLabelId,jLabelNota1,jLabelNota2,jLabelNota3;
 private JButton jButtonSalvar,jButtonCancelar,jButtonEdital;
-    private void gerarTela() {
-        jFrameSystem = new JFrame();
-        jFrameSystem.setSize(390,240);
-        jFrameSystem.setLocationRelativeTo(null);
-        jFrameSystem.setLayout(null);
-        jFrameSystem.setResizable(false);
-        jFrameSystem.setDefaultCloseOperation(jFrameSystem.DISPOSE_ON_CLOSE);
+   /* private void gerarTela(){
 
         
-    }
+    }*/
 
     private void instanciarComponentes() {
         jTextFieldId = new JTextField();
@@ -60,62 +55,7 @@ private JButton jButtonSalvar,jButtonCancelar,jButtonEdital;
         jLabelNota3 = new JLabel("3° nota");
         jButtonSalvar = new JButton("Salvar");
         jButtonEdital = new JButton("Editar");
-    }
-
-    private void adicionarComponentes() {
-        jFrameSystem.add(jLabelId);
-        jFrameSystem.add(jLabelNome);
-        jFrameSystem.add(jLabelNota1);
-        jFrameSystem.add(jLabelNota2);
-        jFrameSystem.add(jLabelNota3);
-        jFrameSystem.add(jTextFieldId);
-        jFrameSystem.add(jTextFieldFrequencia);
-        jFrameSystem.add(jTextFieldNome);
-        jFrameSystem.add(jTextFieldCodigoMatricula);
-        jFrameSystem.add(jTextFieldNota1);
-        jFrameSystem.add(jTextFieldNota2);
-        jFrameSystem.add(jTextFieldNota3);
-        jFrameSystem.add(jButtonSalvar);
-        jFrameSystem.add(jButtonEdital);
-        
-    }
-
-    private void gerarLocalizacoes() {
-      int margem =20, entreLinha = 20;
-      jLabelId.setLocation(200+margem,3+entreLinha);
-      jLabelNome.setLocation(10+margem,3+entreLinha);
-      jTextFieldId.setLocation(200+margem,25+entreLinha);
-      jTextFieldNome.setLocation(10+margem,25+entreLinha);
-      jTextFieldNota1.setLocation(10+margem, 60+entreLinha);
-      jTextFieldNota2.setLocation(90+margem,60+entreLinha);
-      jTextFieldNota3.setLocation(170+margem,60+entreLinha);
-      jLabelNota1.setLocation(jTextFieldNota1.getX(),62);
-      jLabelNota2.setLocation(jTextFieldNota2.getX(),62);
-      jLabelNota3.setLocation(jTextFieldNota3.getX(),62);
-      jTextFieldCodigoMatricula.setLocation(jLabelNota1.getX(),100+entreLinha);
-      jTextFieldFrequencia.setLocation(jLabelNota2.getX(),100+entreLinha);
-      jButtonSalvar.setLocation(jLabelNota1.getX(), jTextFieldCodigoMatricula.getY()+ entreLinha);
-      jButtonEdital.setLocation(101,jTextFieldFrequencia.getY()+entreLinha);
-    }
-
-    private void gerarDimensoes() {
-         jLabelId.setSize(25,20);
-         jLabelNome.setSize(60,20);
-         jTextFieldId.setSize(70,20);
-         jTextFieldNome.setSize(180,20);
-         jTextFieldNota1.setSize(jTextFieldId.getSize());
-         jTextFieldNota2.setSize(jTextFieldId.getSize());
-         jTextFieldNota3.setSize(jTextFieldId.getSize());
-         jLabelNota1.setSize(jLabelNome.getSize());
-         jLabelNota2.setSize(jLabelNome.getSize());
-         jLabelNota3.setSize(jLabelNome.getSize());
-         jTextFieldCodigoMatricula.setSize(jTextFieldId.getSize());
-         jTextFieldFrequencia.setSize(jTextFieldId.getSize());
-         jButtonSalvar.setSize(jTextFieldCodigoMatricula.getSize());
-         jButtonEdital.setSize(85,20);
-    }
-
-    private void acaoBotaoSalvar() {
+    } private void acaoBotaoSalvar() {
          jButtonSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,5 +75,73 @@ private JButton jButtonSalvar,jButtonCancelar,jButtonEdital;
                 }
             }    
          }
+    
+    }
+    
+    @Override
+    public void gerarTela() {
+        jFrameSystem = new JFrame();
+        jFrameSystem.setSize(390,240);
+        jFrameSystem.setLocationRelativeTo(null);
+        jFrameSystem.setLayout(null);
+        jFrameSystem.setResizable(false);
+        jFrameSystem.setDefaultCloseOperation(jFrameSystem.DISPOSE_ON_CLOSE);
+
+    }
+
+    @Override
+    public void adicionarComponentes() {
+         jFrameSystem.add(jLabelId);
+        jFrameSystem.add(jLabelNome);
+        jFrameSystem.add(jLabelNota1);
+        jFrameSystem.add(jLabelNota2);
+        jFrameSystem.add(jLabelNota3);
+        jFrameSystem.add(jTextFieldId);
+        jFrameSystem.add(jTextFieldFrequencia);
+        jFrameSystem.add(jTextFieldNome);
+        jFrameSystem.add(jTextFieldCodigoMatricula);
+        jFrameSystem.add(jTextFieldNota1);
+        jFrameSystem.add(jTextFieldNota2);
+        jFrameSystem.add(jTextFieldNota3);
+        jFrameSystem.add(jButtonSalvar);
+        jFrameSystem.add(jButtonEdital);
+    }
+
+    @Override
+    public void gerarLocalizacoes() {
+            int margem =20, entreLinha = 20;
+      jLabelId.setLocation(200+margem,3+entreLinha);
+      jLabelNome.setLocation(10+margem,3+entreLinha);
+      jTextFieldId.setLocation(200+margem,25+entreLinha);
+      jTextFieldNome.setLocation(10+margem,25+entreLinha);
+      jTextFieldNota1.setLocation(10+margem, 60+entreLinha);
+      jTextFieldNota2.setLocation(90+margem,60+entreLinha);
+      jTextFieldNota3.setLocation(170+margem,60+entreLinha);
+      jLabelNota1.setLocation(jTextFieldNota1.getX(),62);
+      jLabelNota2.setLocation(jTextFieldNota2.getX(),62);
+      jLabelNota3.setLocation(jTextFieldNota3.getX(),62);
+      jTextFieldCodigoMatricula.setLocation(jLabelNota1.getX(),100+entreLinha);
+      jTextFieldFrequencia.setLocation(jLabelNota2.getX(),100+entreLinha);
+      jButtonSalvar.setLocation(jLabelNota1.getX(), jTextFieldCodigoMatricula.getY()+ entreLinha);
+      jButtonEdital.setLocation(101,jTextFieldFrequencia.getY()+entreLinha);
+   
+    }
+
+    @Override
+    public void gerarDimensoes() {
+         jLabelId.setSize(25,20);
+         jLabelNome.setSize(60,20);
+         jTextFieldId.setSize(70,20);
+         jTextFieldNome.setSize(180,20);
+         jTextFieldNota1.setSize(jTextFieldId.getSize());
+         jTextFieldNota2.setSize(jTextFieldId.getSize());
+         jTextFieldNota3.setSize(jTextFieldId.getSize());
+         jLabelNota1.setSize(jLabelNome.getSize());
+         jLabelNota2.setSize(jLabelNome.getSize());
+         jLabelNota3.setSize(jLabelNome.getSize());
+         jTextFieldCodigoMatricula.setSize(jTextFieldId.getSize());
+         jTextFieldFrequencia.setSize(jTextFieldId.getSize());
+         jButtonSalvar.setSize(jTextFieldCodigoMatricula.getSize());
+         jButtonEdital.setSize(85,20);
     }
 }

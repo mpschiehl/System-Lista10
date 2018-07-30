@@ -37,8 +37,8 @@ public class AlunoDao {
                 preparedStatement.setDouble(3, aluno.getNota1());
                 preparedStatement.setDouble(4, aluno.getNota2());
                 preparedStatement.setDouble(5, aluno.getNota3());
-                preparedStatement.setString(7, aluno.getCodigoDeMatricula());
-                preparedStatement.setByte(8, aluno.getFrequencia());
+                preparedStatement.setString(6, aluno.getCodigoDeMatricula());
+                preparedStatement.setByte(7, aluno.getFrequencia());
                 preparedStatement.execute();
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
